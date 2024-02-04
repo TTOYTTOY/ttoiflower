@@ -1,12 +1,18 @@
 using System.Runtime.CompilerServices;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class Movement2D : MonoBehaviour
 {
+    public string currentSceneName;
+
     private float moveSpeed = 5.0f;                 // 이동 속도
     private Vector3 moveDirection = Vector3.zero;   // 이동 방향
     private Rigidbody2D rigid2D;
+
+    private float x;
+    private float y;
 
     // dont destroy on load
     private static Movement2D s_Instance = null;
@@ -22,12 +28,13 @@ public class Movement2D : MonoBehaviour
         s_Instance = this;
         rigid2D = GetComponent<Rigidbody2D>();
         DontDestroyOnLoad(this.gameObject);
+
     }
 
     private void Update()
     {   
-        float x = Input.GetAxisRaw("Horizontal");   // 좌우 이동
-        float y = Input.GetAxisRaw ("Vertical");    // 상하 이동
+        x = Input.GetAxisRaw("Horizontal");   // 좌우 이동
+        y = Input.GetAxisRaw ("Vertical");    // 상하 이동
 
         // 이동 방향 설정
         // moveDirection = new Vector3(x, y, 0);
@@ -36,23 +43,5 @@ public class Movement2D : MonoBehaviour
         // transform.position = transform.position + new Vector3(1, 0, 0) * 1;
         //transform.position += moveDirection * moveSpeed * Time.deltaTime;
         rigid2D.velocity = new Vector3(x, y, 0) * moveSpeed;
-    }
-
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        //string sceneName = null;
-        //if(collision.gameObject.name == "Portal_Store")
-        //{
-        //    sceneName = "Garden";
-        //}
-
-        //else if(collision.gameObject.name == "Portal_Garden")
-        //{
-        //    sceneName = "Store";
-        //}
-
-        //string portalName = "Portal_" + sceneName;
-        //this.gameObject.transform.position = GameObject.Find(portalName).gameObject.transform.position;
-        //SceneController.instance.NextScene(portalName);
     }
 }

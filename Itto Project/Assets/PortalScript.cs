@@ -1,24 +1,25 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PortalScript : MonoBehaviour
 {
+    [SerializeField]
+    private string nextSceneName;
+    private Movement2D player;
+    //private bool flag = false;
+    //private float x;
     private void Awake()
     {
-        GameObject.Find("Player").transform.position = this.gameObject.transform.position;
+        if (player == null)
+            player = FindObjectOfType<Movement2D>();
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if(collision.gameObject.name == "Player")
+        if(collision.CompareTag("Player"))
         {
-            if (this.gameObject.name == "Portal_Garden")
-            {
-                SceneController.instance.NextScene("Store");
-            }
-            else if (this.gameObject.name == "Portal_Store")
-            {
-                SceneController.instance.NextScene("Garden");
-            }
+            player.currentSceneName = nextSceneName;
+            SceneManager.LoadScene(nextSceneName);
         }
     }
 }
