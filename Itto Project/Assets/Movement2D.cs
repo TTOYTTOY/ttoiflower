@@ -17,6 +17,8 @@ public class Movement2D : MonoBehaviour
     // dont destroy on load
     private static Movement2D s_Instance = null;
 
+    GameObject scanObject;
+
     private void Awake()
     {
         if(s_Instance)
@@ -28,6 +30,7 @@ public class Movement2D : MonoBehaviour
         s_Instance = this;
         rigid2D = GetComponent<Rigidbody2D>();
         DontDestroyOnLoad(this.gameObject);
+        Debug.Log(this.gameObject.name);
 
     }
 
