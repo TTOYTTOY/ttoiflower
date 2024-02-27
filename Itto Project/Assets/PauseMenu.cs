@@ -20,6 +20,7 @@ public class PauseMenu : MonoBehaviour
         }
         pauseMenu = this;
         DontDestroyOnLoad(this.gameObject);
+
     }
 
     private void Update()
