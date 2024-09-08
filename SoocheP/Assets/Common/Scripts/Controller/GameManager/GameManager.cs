@@ -4,8 +4,9 @@ using UnityEngine;
 using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
-{    
-   public conver convermanager;
+{
+    public static bool isPause = false; // 일시 정지 메뉴 창 활성화
+    public conver convermanager;
     public GameObject talkPanel;
 
     public Equipment equipment;
@@ -42,38 +43,30 @@ public class GameManager : MonoBehaviour
          Debug.Log(i);
          Debug.Log(s);
    }
+    void Update()
+    {
+        if (isPause)
+        {
+            Cursor.lockState = CursorLockMode.None;
+            Cursor.visible = true;
+        }
+    }
 
     public void Action(GameObject scanObj)
     {
 
-      
-
-
-
-
-
-     
-     if (isAction){
-        isAction = false;
-     }
-     else{
+    if (isAction){
+       isAction = false;
+    }
+    else{
             isAction = true;
             scanObject = scanObj;
             ObjectManager objDate = scanObject.GetComponent<ObjectManager>();
-            
-            
 
-
-
-            
            Conver (objDate.id,objDate.isNpc);
             
      }
-
-
         talkPanel.SetActive(isAction);
-
-
 
     }
 
@@ -102,15 +95,10 @@ public class GameManager : MonoBehaviour
             talkText.text = condate;
 
 
-            
+          
         }else 
 
             talkText.text = condate;
-
-            
-
-
-      
      
     }
 }
