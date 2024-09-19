@@ -39,7 +39,10 @@ public class Movement2D : MonoBehaviour
    
  
 
-    // dont destroy on load
+    // dont destroy on load.
+
+
+    
    
 
     private void Awake()
@@ -87,18 +90,18 @@ public class Movement2D : MonoBehaviour
 
           if (y == 1){
                 moveDirection = Vector3.up;
-                moveSpeed = 50f;
+                moveSpeed = 5f;
             }else if (x == 1){
                 moveDirection = Vector3.right;
                 spriter.flipX = true;
-               moveSpeed = 50f;
+               moveSpeed = 5f;
             }else if (y == -1){
                 moveDirection = Vector3.down;
-                 moveSpeed = 50f;
+                 moveSpeed = 5f;
             }else if (x == -1){
                 moveDirection = Vector3.left;
                 spriter.flipX = false ;
-               moveSpeed = 50f;
+               moveSpeed = 5f;
             }else 
              moveSpeed = 0f;
 
