@@ -8,4 +8,5 @@ public class ObjectManager : MonoBehaviour
     public int id;
     public bool isNpc;
     
+    public bool PlayNpc;
 }

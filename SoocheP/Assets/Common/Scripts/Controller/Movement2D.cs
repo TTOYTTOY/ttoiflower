@@ -10,8 +10,6 @@ public class Movement2D : MonoBehaviour
     public GameManager manager;
     SpriteRenderer spriter;
     Animator anim;
-
-
     private float moveSpeed = 50f;    
     
     private float x;
@@ -26,8 +24,9 @@ public class Movement2D : MonoBehaviour
     private Vector3 moveDirection = Vector3.zero;   // �̵� ����
     
 
+   
   
-     
+   
 
    
 
@@ -40,14 +39,10 @@ public class Movement2D : MonoBehaviour
  
 
     // dont destroy on load.
-
-
-    
-   
-
     private void Awake()
     {
-
+        
+        
 
         if(s_Instance)
         {
@@ -65,16 +60,19 @@ public class Movement2D : MonoBehaviour
         spriter = GetComponent<SpriteRenderer>();
         //캐릭터 애니메이션 
         anim = GetComponent<Animator>();
+        
+      
     }
 
     // TODO : export different Script
     private void Update()
     {   
-         
+    
+        
         //manager.isAction ? 0 :  = 대화창 출력시에 움직임 제한 
         x = manager.isAction ? 0 : Input.GetAxisRaw("Horizontal");   // �¿� �̵�
         y = manager.isAction ? 0 : Input.GetAxisRaw ("Vertical");    // ���� �̵�
-
+        
      
 
         // �̵� ���� ����
@@ -105,21 +103,31 @@ public class Movement2D : MonoBehaviour
             }else 
              moveSpeed = 0f;
 
-                  //스페이스바 누를경우 오브젝트 스캔
-         if(Input.GetButtonDown("Jump") && scanObject != null)
+
+   
+   
+         //스페이스바 누를경우 오브젝트 스캔
+         if(Input.GetButtonDown("Jump")  && scanObject !=null){
 
          manager.Action(scanObject);
+    
 
-
-                
+         }
+       
 
     }
 
     //상호작용부분
     private void FixedUpdate()
     {
-        
       
+        
+        //puses 버튼눌렀을때
+        // Action = pause.GetComponent<PauseMenuScript>();
+        // Debug.Log(Action);
+
+        
+        
          Debug.DrawRay (rigid2D.position ,moveDirection * 50f, new Color(0,1,0) );
          RaycastHit2D rayHit = Physics2D.Raycast (rigid2D.position,moveDirection,50f,LayerMask.GetMask("Object"));
        
@@ -136,7 +144,7 @@ public class Movement2D : MonoBehaviour
     {
        
         anim.SetFloat("moveSpeed",moveSpeed);
-         
+      
 
     }
 

@@ -42,27 +42,25 @@ public class GameManager : MonoBehaviour
          Debug.Log(f);
          Debug.Log(i);
          Debug.Log(s);
+
+         
    }
-    void Update()
-    {
-        if (isPause)
-        {
-            Cursor.lockState = CursorLockMode.None;
-            Cursor.visible = true;
-        }
-    }
+
+    
+  
 
     public void Action(GameObject scanObj)
     {
 
     if (isAction){
        isAction = false;
+      
     }
     else{
             isAction = true;
             scanObject = scanObj;
             ObjectManager objDate = scanObject.GetComponent<ObjectManager>();
-
+            
            Conver (objDate.id,objDate.isNpc);
             
      }
